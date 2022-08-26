@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Linq;
 
 public abstract class Instrument
 {
@@ -13,11 +13,7 @@ public abstract class Instrument
     public int Year { get; set; }
     public abstract void Sound();
 
-    public void PrintAllInstruments()
-    {
 
-        
-    }
 }
 
 

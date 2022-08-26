@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace ClassesHomework
 {
@@ -7,23 +8,33 @@ namespace ClassesHomework
         static void Main(string[] args)
         {
             
-            Guitar guitar1 = new Guitar("guitar-11", "good");
-            Guitar guitar2 = new Guitar("guitar-22", "bad");
-            Violin viol1 = new Violin("viol-11", 3);
-            Violin viol2 = new Violin("viol-22", 2);
-            Piano piano1 = new Piano("piano-11", "narmin");
-            Piano piano2 = new Piano("piano-2", "nergiz");
-            Flute flute1 = new Flute("flute-11", 2022);
-            Flute flute2 = new Flute("flute-22", 2021);
+            Instrument guitar = new Guitar("guitar-11", "good");
+            Instrument viol = new Violin("viol-11", 3);
+            Instrument piano = new Piano("piano-11", "narmin");
+            Instrument flute = new Flute("flute-11", 2022);
 
-            object[] elements = new object[8] {guitar1, guitar2, viol1,
-                                    viol2, flute1, flute2, piano1, piano2};
+            Instrument[] elements = {guitar, viol, flute, piano};
 
-            for (int i = 0; i < elements.Length; i++)
+            PrintAllInstruments(elements);
+
+            static void PrintAllInstruments(Instrument[] instruments)
             {
-                Console.WriteLine(elements[i].ToString());
-            }
+                foreach (var instrument in instruments)
+                {
+                    Console.WriteLine($"Instrument     :  {instrument.GetType().Name}");
+                    Console.WriteLine("_________________________________");
+                    foreach (PropertyInfo po in instrument.GetType().GetProperties())
+                    {
+                        Console.WriteLine("Characteristic : ");
+                        Console.WriteLine("           ");
+                        Console.WriteLine($" PropertName: { po.Name} / PropertyValue {po.GetValue(instrument)}");
+                        Console.WriteLine("           ");
 
+                    }
+
+                }
+                
+            }
 
 
         }
